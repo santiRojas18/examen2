@@ -1,0 +1,22 @@
+name: Codecov
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run tests
+        run: |
+          npm install --save-dev jest
+          npm test -- --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: c6c57dd6-3202-48c2-b832-31c6d62cec00
